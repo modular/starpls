@@ -276,19 +276,19 @@ impl<'a> Semantics<'a> {
         })
     }
 
-    pub fn scope_for_module(&self, file: File) -> SemanticsScope {
+    pub fn scope_for_module(&self, file: File) -> SemanticsScope<'_> {
         let resolver = Resolver::new_for_module(self.db, file);
         SemanticsScope { resolver }
     }
 
-    pub fn scope_for_expr(&self, file: File, expr: &ast::Expression) -> Option<SemanticsScope> {
+    pub fn scope_for_expr(&self, file: File, expr: &ast::Expression) -> Option<SemanticsScope<'_>> {
         let ptr = AstPtr::new(expr);
         let expr = source_map(self.db, file).expr_map.get(&ptr)?;
         let resolver = Resolver::new_for_expr(self.db, file, *expr);
         Some(SemanticsScope { resolver })
     }
 
-    pub fn scope_for_offset(&self, file: File, offset: TextSize) -> SemanticsScope {
+    pub fn scope_for_offset(&self, file: File, offset: TextSize) -> SemanticsScope<'_> {
         let resolver = Resolver::new_for_offset(self.db, file, offset);
         SemanticsScope { resolver }
     }

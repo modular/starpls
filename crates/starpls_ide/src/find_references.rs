@@ -173,7 +173,7 @@ mod tests {
             .into_iter()
             .map(|location| (location.file_id, location.range))
             .collect::<Vec<_>>();
-        actual_locations.sort_by_key(|(_, range)| (range.start()));
+        actual_locations.sort_by_key(|(_, range)| range.start());
         actual_locations.sort_by_key(|(file_id, _)| *file_id);
 
         assert_eq!(fixture.selected_ranges, actual_locations);

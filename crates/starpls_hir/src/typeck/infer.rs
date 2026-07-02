@@ -932,11 +932,10 @@ impl TyContext<'_> {
                                             self.add_expr_diagnostic_error(file, expr, format!("Argument of type \"{}\" cannot be assigned to parameter of type \"{}\"", ty.display(self.db).alt(), expected_ty.display(self.db).alt()));
                                         }
                                     }
-                                    SlotProvider::Missing => {
-                                        if attr.mandatory {
-                                            missing_attrs.push(name);
-                                        }
+                                    SlotProvider::Missing if attr.mandatory => {
+                                        missing_attrs.push(name);
                                     }
+
                                     _ => {}
                                 }
                             }
@@ -985,10 +984,8 @@ impl TyContext<'_> {
                                             self.add_expr_diagnostic_error(file, expr, format!("Argument of type \"{}\" cannot be assigned to parameter of type \"{}\"", ty.display(self.db).alt(), expected_ty.display(self.db).alt()));
                                         }
                                     }
-                                    SlotProvider::Missing => {
-                                        if data.attr.mandatory {
-                                            missing_attrs.push(&data.name);
-                                        }
+                                    SlotProvider::Missing if data.attr.mandatory => {
+                                        missing_attrs.push(&data.name);
                                     }
                                     _ => {}
                                 }
@@ -1045,10 +1042,8 @@ impl TyContext<'_> {
                                             self.add_expr_diagnostic_error(file, expr, format!("Argument of type \"{}\" cannot be assigned to parameter of type \"{}\"", ty.display(self.db).alt(), expected_ty.display(self.db).alt()));
                                         }
                                     }
-                                    SlotProvider::Missing => {
-                                        if attr.mandatory {
-                                            missing_attrs.push(name);
-                                        }
+                                    SlotProvider::Missing if attr.mandatory => {
+                                        missing_attrs.push(name);
                                     }
                                     _ => {}
                                 }
@@ -1695,7 +1690,7 @@ impl TyContext<'_> {
                         continue;
                     }
                 }
-                FlowNode::Unreachable { .. } => Ty::never(),
+                FlowNode::Unreachable => Ty::never(),
             };
 
             break Some(curr_node_ty);
