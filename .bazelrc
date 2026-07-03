@@ -7,8 +7,6 @@ build --@aspect_rules_ts//ts:skipLibCheck=honor_tsconfig
 fetch --@aspect_rules_ts//ts:skipLibCheck=honor_tsconfig
 query --@aspect_rules_ts//ts:skipLibCheck=honor_tsconfig
 
-build --experimental_convenience_symlinks=ignore
-
 build --@rules_rust//:rustfmt.toml=//:rustfmt.toml
 build --aspects=@rules_rust//rust:defs.bzl%rustfmt_aspect
 build --output_groups=+rustfmt_checks

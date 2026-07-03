@@ -34,6 +34,7 @@ jobs:
         with:
           name: starpls-${{ matrix.target.name }}
           path: bazel-bin/crates/starpls/starpls
+          if-no-files-found: error
 
   build-windows:
     name: Build (Windows)
@@ -56,6 +57,7 @@ jobs:
         with:
           name: starpls-windows-amd64
           path: bazel-bin/crates/starpls/starpls.exe
+          if-no-files-found: error
 
   release:
     name: Release
