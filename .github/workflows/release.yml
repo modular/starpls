@@ -85,7 +85,7 @@ jobs:
           cd release
           cp starpls-linux-aarch64 starpls && tar -czvf starpls-linux-aarch64.tar.gz starpls && rm starpls
           cp starpls-linux-amd64 starpls && tar -czvf starpls-linux-amd64.tar.gz starpls && rm starpls
-          cp starpls-darwin-arm64 starpls && tar -czvf starplload_bazel_build_languages-darwin-arm64.tar.gz starpls && rm starpls
+          cp starpls-darwin-arm64 starpls && tar -czvf starpls-darwin-arm64.tar.gz starpls && rm starpls
           cp starpls-windows-amd64.exe starpls.exe && zip starpls-windows-amd64.zip starpls.exe && rm starpls.exe
       - name: Show release artifacts
         run: find release
