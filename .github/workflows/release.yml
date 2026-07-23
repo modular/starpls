@@ -30,7 +30,7 @@ jobs:
           # Strip the 'v'
           version=${tag:1}
           # Replace the version in the file so we don't need to do it manually
-          awk '{ sub(/version = .*/, "version = "$version"") }; 1' crates/starpls/Cargo.toml > output.toml && mv output.toml crates/starpls/Cargo.toml
+          awk -v ver="$version" '{ sub(/^version = .*/, "version = \"" ver "\"") }; 1' crates/starpls/Cargo.toml > output.toml && mv output.toml crates/starpls/Cargo.toml
         # env:
         #   BUILDBUDDY_API_KEY: ${{ secrets.BUILDBUDDY_API_KEY }}
       - name: Build
@@ -57,7 +57,7 @@ jobs:
           # Strip the 'v'
           version=${tag:1}
           # Replace the version in the file so we don't need to do it manually
-          awk '{ sub(/version = .*/, "version = "$version"") }; 1' crates/starpls/Cargo.toml > output.toml && mv output.toml crates/starpls/Cargo.toml
+          awk -v ver="$version" '{ sub(/^version = .*/, "version = \"" ver "\"") }; 1' crates/starpls/Cargo.toml > output.toml && mv output.toml crates/starpls/Cargo.toml
         shell: bash
         # env:
         #   BUILDBUDDY_API_KEY: ${{ secrets.BUILDBUDDY_API_KEY }}
