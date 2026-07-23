@@ -53,6 +53,7 @@ jobs:
           echo "startup --output_user_root=C:/b" >>.bazelrc
           echo "startup --windows_enable_symlinks" >>.bazelrc
           mkdir -p editors/code/dist
+          tag=${{ github.ref_name }}
           # Strip the 'v'
           version=${tag:1}
           # Replace the version in the file so we don't need to do it manually
