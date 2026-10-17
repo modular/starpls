@@ -11,6 +11,5 @@ members = [
     "crates/starpls_parser",
     "crates/starpls_syntax",
     "crates/starpls_test_util",
-    "vendor/runfiles",
     "xtask",
 ]

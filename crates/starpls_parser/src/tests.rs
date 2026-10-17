@@ -6,11 +6,22 @@ use std::path::PathBuf;
 
 use expect_test::expect_file;
 use expect_test::ExpectFile;
-use runfiles::find_runfiles_dir;
 
 use crate::parse;
 use crate::StrStep;
 use crate::StrWithTokens;
+
+#[cfg(bazel)]
+fn get_root() -> PathBuf {
+    runfiles::find_runfiles_dir()
+        .unwrap()
+        .join("_main/crates/starpls_parser")
+}
+
+#[cfg(not(bazel))]
+fn get_root() -> PathBuf {
+    PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap())
+}
 
 fn check(input: &str, expected: ExpectFile) {
     let str_with_tokens = StrWithTokens::new(input);
@@ -69,18 +80,8 @@ fn collect_test_cases(dir: &'static str) -> Result<Vec<TestCase>, Box<dyn error:
     // Check for a test filter.
     let filter = env::var("TEST_FILTER").ok();
 
-    // let crate_root = find_runfiles_dir()?.join("starpls/crates/starpls_parser");
-    let root = find_runfiles_dir()
-        .map(|dir| dir.join("_main/crates/starpls_parser"))
-        .unwrap_or_else(|_| {
-            PathBuf::from(
-                env::var("CARGO_MANIFEST_DIR")
-                    .unwrap_or_else(|_| env!("CARGO_MANIFEST_DIR").to_string()),
-            )
-        });
-
     // Determine the test data directory.
-    let test_data_dir = root.join(dir);
+    let test_data_dir = get_root().join(dir);
 
     for entry in fs::read_dir(test_data_dir)? {
         let entry = entry?;

@@ -25,3 +25,6 @@ prost-build = "0.12.3"
 [[bin]]
 name = "inspect-builtins"
 path = "src/bin/main.rs"
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(bazel)'] }
