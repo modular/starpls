@@ -8,12 +8,7 @@ rust_binary(
     srcs = glob(["src/**/*.rs"]),
     compile_data = [":src/builtin/builtin.pb"],
     rustc_env_files = [":generate_rustc_env_file"],
-    deps = all_crate_deps() + [
-        "//crates/starpls_bazel",
-        "//crates/starpls_common",
-        "//crates/starpls_ide",
-        "//crates/starpls_syntax",
-    ],
+    deps = all_crate_deps(),
 )
 
 genrule(

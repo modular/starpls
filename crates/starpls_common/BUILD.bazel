@@ -7,10 +7,7 @@ rust_library(
     name = "starpls_common",
     srcs = glob(["src/**/*.rs"]),
     aliases = {
-        "@crates//:salsa": "salsa",
+        "@crates//:salsa-2022": "salsa",
     },
-    deps = all_crate_deps() + [
-        "//crates/starpls_bazel",
-        "//crates/starpls_syntax",
-    ],
+    deps = all_crate_deps(),
 )
