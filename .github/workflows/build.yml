@@ -11,7 +11,17 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.target.runs-on }}
+    strategy:
+      matrix:
+        target:
+          - name: linux-amd64
+            runs-on: ubuntu-26.04
+          - name: linux-aarch64
+            runs-on: ubuntu-26.04-arm
+          - name: darwin-arm64
+            runs-on: macos-15
+      fail-fast: false
     steps:
       - uses: actions/checkout@4f1f4aec02e41874fa0262ea8ff5172d7978ad1e
       - name: Prepare for build
