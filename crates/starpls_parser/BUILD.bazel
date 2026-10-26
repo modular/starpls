@@ -6,9 +6,7 @@ package(default_visibility = ["//visibility:public"])
 rust_library(
     name = "starpls_parser",
     srcs = glob(["src/**/*.rs"]),
-    deps = all_crate_deps() + [
-        "//crates/starpls_lexer",
-    ],
+    deps = all_crate_deps(),
 )
 
 filegroup(

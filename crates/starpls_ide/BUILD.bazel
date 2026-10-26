@@ -7,21 +7,15 @@ rust_library(
     name = "starpls_ide",
     srcs = glob(["src/**/*.rs"]),
     aliases = {
-        "@crates//:salsa": "salsa",
+        "@crates//:salsa-2022": "salsa",
     },
-    deps = all_crate_deps() + [
-        "//crates/starpls_bazel",
-        "//crates/starpls_common",
-        "//crates/starpls_hir",
-        "//crates/starpls_syntax",
-        "//crates/starpls_test_util",
-    ],
+    deps = all_crate_deps(),
 )
 
 rust_test(
     name = "starpls_ide_test",
     aliases = {
-        "@crates//:salsa": "salsa",
+        "@crates//:salsa-2022": "salsa",
     },
     crate = ":starpls_ide",
     deps = all_crate_deps(normal_dev = True),
