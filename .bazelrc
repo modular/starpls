@@ -25,4 +25,4 @@ build --@protobuf//bazel/toolchains:prefer_prebuilt_protoc=True
 
 common --repo_env=ASPECT_TOOLS_TELEMETRY=-all
 
-common:windows --host_platform=//platforms:local_windows_msvc
+common:windows --host_platform=//:local_windows_msvc
