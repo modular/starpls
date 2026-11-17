@@ -15,12 +15,12 @@ jobs:
     strategy:
       matrix:
         target:
-          - name: linux-amd64
-            runs-on: ubuntu-26.04
-          - name: linux-aarch64
-            runs-on: ubuntu-26.04-arm
-          - name: darwin-arm64
-            runs-on: macos-15
+          - runs-on: ubuntu-26.04
+            targets: //...
+          - runs-on: ubuntu-26.04-arm
+            targets: //crates/...
+          - runs-on: macos-15
+            targets: //...
       fail-fast: false
     steps:
       - uses: actions/checkout@4f1f4aec02e41874fa0262ea8ff5172d7978ad1e
@@ -31,9 +31,9 @@ jobs:
         # env:
         #   BUILDBUDDY_API_KEY: ${{ secrets.BUILDBUDDY_API_KEY }}
       - name: Build
-        run: bazel build //...
+        run: bazel build ${{ matrix.target.targets }}
       - name: Run tests
-        run: bazel test --build_tests_only //...
+        run: bazel test --build_tests_only ${{ matrix.target.targets }}
 
   build-windows:
     runs-on: windows-latest
