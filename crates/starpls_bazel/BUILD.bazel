@@ -1,6 +1,6 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_rust//extensions/prost:defs.bzl", "rust_prost_library")
 load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
-load("@rules_rust_prost//:defs.bzl", "rust_prost_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -44,12 +44,12 @@ rust_library(
     deps = [
         ":build_proto_rust",
         ":builtin_proto_rust",
-        "@crates//:anyhow",
-        "@crates//:bytes",
-        "@crates//:parking_lot",
-        "@crates//:prost",
-        "@crates//:serde",
-        "@crates//:serde_json",
+        "@crates//anyhow",
+        "@crates//bytes",
+        "@crates//parking_lot",
+        "@crates//prost",
+        "@crates//serde",
+        "@crates//serde_json",
     ],
 )
 
