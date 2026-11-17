@@ -44,12 +44,12 @@ rust_library(
     deps = [
         ":build_proto_rust",
         ":builtin_proto_rust",
-        "@crates//:anyhow",
-        "@crates//:bytes",
-        "@crates//:parking_lot",
-        "@crates//:prost",
-        "@crates//:serde",
-        "@crates//:serde_json",
+        "@crates//anyhow",
+        "@crates//bytes",
+        "@crates//parking_lot",
+        "@crates//prost",
+        "@crates//serde",
+        "@crates//serde_json",
     ],
 )
 
