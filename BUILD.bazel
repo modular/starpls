@@ -28,7 +28,8 @@ toolchain(
 )
 
 platform(
-    name = "local_windows_msvc",
+    # Long CLI, use a short name
+    name = "win",
     constraint_values = [
         "@llvm//constraints/windows/abi:msvc",
     ],
