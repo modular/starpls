@@ -17,6 +17,9 @@ build --incompatible_strict_action_env
 
 test --test_output=errors
 
+# Note: Not using LLVM toolchains on Windows, see https://github.com/hermeticbuild/rules_rs/issues/137
+build:linux --extra_toolchains=@llvm//toolchain:all
+build:macos --extra_toolchains=@llvm//toolchain:all
 build:linux --sandbox_add_mount_pair=/tmp
 build:linux --action_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
 
@@ -24,6 +27,3 @@ build --incompatible_enable_proto_toolchain_resolution=true
 build --@protobuf//bazel/toolchains:prefer_prebuilt_protoc=True
 
 common --repo_env=ASPECT_TOOLS_TELEMETRY=-all
-
-common:windows --host_platform=//:local_windows_msvc
-common --repo_env=BAZEL_MSVC_RUNTIME_VISUAL_STUDIO_EULA=1
