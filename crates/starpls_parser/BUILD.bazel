@@ -20,7 +20,8 @@ rust_test(
     name = "starpls_parser_test",
     crate = ":starpls_parser",
     data = [":test_data"],
+    rustc_flags = ["--cfg=bazel"],
     deps = all_crate_deps(normal_dev = True) + [
-        "//vendor/runfiles",
+        "@rules_rust//rust/runfiles",
     ],
 )
