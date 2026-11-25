@@ -1,4 +1,4 @@
-load("@crates//:defs.bzl", "all_crate_deps")
+load("@crates//starpls:data.bzl", "all_crate_deps")
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 
 package(default_visibility = ["//visibility:public"])
@@ -8,12 +8,7 @@ rust_binary(
     srcs = glob(["src/**/*.rs"]),
     compile_data = [":src/builtin/builtin.pb"],
     rustc_env_files = [":generate_rustc_env_file"],
-    deps = all_crate_deps() + [
-        "//crates/starpls_bazel",
-        "//crates/starpls_common",
-        "//crates/starpls_ide",
-        "//crates/starpls_syntax",
-    ],
+    deps = all_crate_deps(),
 )
 
 genrule(
